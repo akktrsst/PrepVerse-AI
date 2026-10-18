@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"><channel><title>Example AI Blog</title>
+  <item><title>Building better RAG with rerankers</title><link>https://blog.example.com/rag-rerankers/</link>
+    <pubDate>Mon, 01 Sep 2025 10:00:00 GMT</pubDate><description>&lt;p&gt;How a cross-encoder reranker improves retrieval quality.&lt;/p&gt;</description></item>
+  <item><title>Our company picnic photos</title><link>https://blog.example.com/picnic/</link>
+    <pubDate>Mon, 01 Sep 2025 10:00:00 GMT</pubDate><description>Fun in the sun.</description></item>
+  <item><title>An old post about attention</title><link>https://blog.example.com/old-attention/</link>
+    <pubDate>Mon, 01 Jan 2018 10:00:00 GMT</pubDate><description>Self-attention basics.</description></item>
+</channel></rss>

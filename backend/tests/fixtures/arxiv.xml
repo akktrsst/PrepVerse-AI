@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <entry>
+    <id>http://arxiv.org/abs/2312.10997v5</id>
+    <published>2023-12-18T17:00:00Z</published>
+    <title>Retrieval-Augmented Generation for Large Language Models:
+      A Survey</title>
+    <summary>Large language models showcase impressive capabilities but encounter challenges like hallucination.</summary>
+    <author><name>Yunfan Gao</name></author><author><name>Yun Xiong</name></author>
+    <author><name>Xinyu Gao</name></author><author><name>Kangxiang Jia</name></author>
+  </entry>
+</feed>

@@ -1,0 +1,122 @@
+[
+  {
+    "id": "ab-testing", "module": "data_science", "title": "A/B Testing & Experimentation", "level": "intermediate",
+    "description": "Designing, powering and analysing online experiments, and the pitfalls interviewers love to probe.",
+    "search_queries": ["A/B testing explained data science", "experiment design power analysis"],
+    "arxiv_query": "all:\"online controlled experiments\"",
+    "github_query": "ab testing statistics",
+    "keywords": ["a/b test", "ab test", "experiment", "statistical power", "p-value", "experimentation"]
+  },
+  {
+    "id": "statistics-inference", "module": "data_science", "title": "Statistics & Hypothesis Testing", "level": "beginner",
+    "description": "p-values, confidence intervals, distributions and the inference questions every DS interview asks.",
+    "search_queries": ["hypothesis testing p-value explained", "statistics for data science interview"],
+    "arxiv_query": "all:\"hypothesis testing\" AND cat:stat.ME",
+    "github_query": "statistics data science tutorial",
+    "keywords": ["hypothesis test", "p-value", "confidence interval", "bayesian", "statistics"]
+  },
+  {
+    "id": "sql-analytics", "module": "data_science", "title": "SQL for Analytics", "level": "beginner",
+    "description": "Joins, window functions, CTEs and the analytical SQL patterns used in data interviews.",
+    "search_queries": ["SQL window functions tutorial", "advanced SQL for data analysts"],
+    "arxiv_query": "all:\"text-to-SQL\"",
+    "github_query": "sql interview questions",
+    "keywords": ["sql", "window function", "postgres", "duckdb", "query"]
+  },
+  {
+    "id": "ml-evaluation", "module": "data_science", "title": "Model Evaluation & Metrics", "level": "intermediate",
+    "description": "Precision, recall, ROC/PR curves, calibration, imbalanced data and the bias-variance trade-off.",
+    "search_queries": ["precision recall ROC AUC explained", "bias variance tradeoff"],
+    "arxiv_query": "all:\"model evaluation\" AND all:imbalanced",
+    "github_query": "imbalanced learning metrics",
+    "keywords": ["precision", "recall", "roc", "auc", "overfitting", "bias-variance", "calibration"]
+  },
+  {
+    "id": "transformers-attention", "module": "genai_llms", "title": "Transformers & Attention", "level": "intermediate",
+    "description": "Self-attention, multi-head attention, positional encodings and how modern LLM architectures work.",
+    "search_queries": ["transformer architecture explained attention", "self attention from scratch"],
+    "arxiv_query": "ti:attention AND ti:transformer AND cat:cs.CL",
+    "github_query": "transformer from scratch",
+    "keywords": ["transformer", "attention", "self-attention", "positional encoding", "kv cache"]
+  },
+  {
+    "id": "rag", "module": "genai_llms", "title": "Retrieval-Augmented Generation", "level": "intermediate",
+    "description": "Chunking, embeddings, hybrid search, reranking and evaluating RAG systems end to end.",
+    "search_queries": ["RAG retrieval augmented generation tutorial", "advanced RAG reranking hybrid search"],
+    "arxiv_query": "all:\"retrieval-augmented generation\"",
+    "github_query": "retrieval augmented generation",
+    "keywords": ["rag", "retrieval-augmented", "retrieval augmented", "vector database", "embedding", "reranker", "chunking"]
+  },
+  {
+    "id": "fine-tuning", "module": "genai_llms", "title": "Fine-tuning, LoRA & PEFT", "level": "advanced",
+    "description": "When to fine-tune, LoRA/QLoRA, instruction tuning and preference optimisation (DPO, RLHF).",
+    "search_queries": ["LoRA fine-tuning explained", "QLoRA fine tune LLM tutorial"],
+    "arxiv_query": "all:\"low-rank adaptation\" OR all:\"parameter-efficient fine-tuning\"",
+    "github_query": "lora fine-tuning llm",
+    "keywords": ["fine-tun", "lora", "qlora", "peft", "dpo", "rlhf", "instruction tuning"]
+  },
+  {
+    "id": "llm-evaluation", "module": "genai_llms", "title": "LLM Evaluation", "level": "advanced",
+    "description": "Benchmarks, LLM-as-judge, golden datasets, hallucination measurement and regression testing.",
+    "search_queries": ["LLM evaluation LLM as a judge", "how to evaluate LLM applications"],
+    "arxiv_query": "all:\"LLM-as-a-judge\" OR (all:\"evaluation\" AND all:\"large language models\" AND cat:cs.CL)",
+    "github_query": "llm evaluation framework",
+    "keywords": ["eval", "benchmark", "llm-as-a-judge", "hallucination", "evaluation"]
+  },
+  {
+    "id": "prompt-engineering", "module": "genai_llms", "title": "Prompt Engineering & Structured Output", "level": "beginner",
+    "description": "Prompt patterns, few-shot, chain-of-thought, structured JSON output and prompt injection basics.",
+    "search_queries": ["prompt engineering guide", "structured output LLM JSON"],
+    "arxiv_query": "all:\"prompt engineering\" AND cat:cs.CL",
+    "github_query": "prompt engineering guide",
+    "keywords": ["prompt", "few-shot", "chain-of-thought", "structured output", "prompt injection"]
+  },
+  {
+    "id": "inference-optimization", "module": "genai_llms", "title": "LLM Inference & Serving", "level": "advanced",
+    "description": "Quantization, KV cache, batching, speculative decoding and the cost/latency trade-offs of serving LLMs.",
+    "search_queries": ["LLM inference optimization quantization", "vLLM serving explained"],
+    "arxiv_query": "all:\"speculative decoding\" OR (all:quantization AND all:\"language models\")",
+    "github_query": "llm inference serving",
+    "keywords": ["inference", "quantization", "vllm", "speculative decoding", "latency", "serving"]
+  },
+  {
+    "id": "agent-fundamentals", "module": "ai_agents", "title": "Agent Fundamentals", "level": "beginner",
+    "description": "What makes an agent, the agent loop, workflows vs agents and when not to build one.",
+    "search_queries": ["AI agents explained", "building effective AI agents"],
+    "arxiv_query": "all:\"LLM agents\" AND all:survey",
+    "github_query": "ai agents tutorial",
+    "keywords": ["agent", "agentic", "react", "autonomous"]
+  },
+  {
+    "id": "tool-calling", "module": "ai_agents", "title": "Tool Calling & Function Calling", "level": "intermediate",
+    "description": "How LLMs call tools, designing good tool schemas, and handling errors and loops.",
+    "search_queries": ["LLM function calling tutorial", "tool use AI agents"],
+    "arxiv_query": "all:\"tool learning\" OR all:\"function calling\"",
+    "github_query": "llm function calling",
+    "keywords": ["tool use", "tool calling", "function calling", "tools"]
+  },
+  {
+    "id": "mcp", "module": "ai_agents", "title": "Model Context Protocol (MCP)", "level": "intermediate",
+    "description": "The open protocol for connecting AI apps to tools and data: servers, clients, and security.",
+    "search_queries": ["Model Context Protocol MCP explained", "build an MCP server"],
+    "arxiv_query": "all:\"model context protocol\"",
+    "github_query": "model context protocol server",
+    "keywords": ["mcp", "model context protocol"]
+  },
+  {
+    "id": "agent-memory", "module": "ai_agents", "title": "Agent Memory & Context", "level": "intermediate",
+    "description": "Short- and long-term memory, context management, summarisation and retrieval for agents.",
+    "search_queries": ["AI agent memory long term", "context engineering agents"],
+    "arxiv_query": "all:\"memory\" AND all:\"LLM agents\"",
+    "github_query": "agent memory llm",
+    "keywords": ["memory", "context window", "context engineering", "long-term memory"]
+  },
+  {
+    "id": "multi-agent", "module": "ai_agents", "title": "Multi-agent Systems & Reliability", "level": "advanced",
+    "description": "Orchestrators and sub-agents, handoffs, evals, guardrails and making agents reliable in production.",
+    "search_queries": ["multi-agent systems LLM", "AI agent evaluation reliability production"],
+    "arxiv_query": "all:\"multi-agent\" AND all:\"large language model\"",
+    "github_query": "multi-agent framework llm",
+    "keywords": ["multi-agent", "orchestrat", "guardrail", "agent eval", "subagent"]
+  }
+]

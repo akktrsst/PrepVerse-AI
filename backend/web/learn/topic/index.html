@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PrepVerse Topic</title>
+  <meta name="description" content="Curated, AI-summarised learning resources for one topic.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='9' fill='%235b4cf0'/><text x='16' y='22' font-size='17' font-family='Arial' font-weight='800' fill='white' text-anchor='middle'>P</text></svg>">
+  <link rel="stylesheet" href="/assets/styles.css">
+  <script src="/assets/app.js"></script>
+  <script src="/assets/highlight.js" defer></script>
+  <script src="/assets/learn.js" defer></script>
+</head>
+<body data-page="learn-topic">
+  <header id="site-header"></header>
+  <main class="container">
+    <div class="page-head" id="topic-head"><p class="muted">Loading…</p></div>
+    <div id="toolbar" class="hidden">
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
+        <div class="tabs" id="type-tabs" style="margin:0"></div>
+        <label class="small muted" style="display:flex;align-items:center;gap:8px">Sort
+          <select id="sort" style="width:auto"><option value="score">Best first</option><option value="recent">Newest first</option></select>
+        </label>
+      </div>
+      <p class="small muted" style="margin:14px 0 18px">💡 Select any text in a summary to highlight it and save it to your notes.</p>
+    </div>
+    <div class="stack" id="resource-list"></div>
+  </main>
+  <footer id="site-footer"></footer>
+</body>
+</html>

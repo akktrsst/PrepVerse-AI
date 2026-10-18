@@ -1,0 +1,7 @@
+{"items": [
+  {"full_name": "acme/rag-kit", "html_url": "https://github.com/acme/rag-kit", "description": "Production RAG toolkit", "language": "Python",
+   "topics": ["rag", "llm"], "stargazers_count": 12000, "forks_count": 900, "pushed_at": "2026-09-01T00:00:00Z",
+   "owner": {"login": "acme", "avatar_url": "https://avatars.githubusercontent.com/u/1"}, "archived": false, "fork": false},
+  {"full_name": "tiny/rag-demo", "html_url": "https://github.com/tiny/rag-demo", "description": "demo", "stargazers_count": 12,
+   "pushed_at": "2026-09-01T00:00:00Z", "owner": {"login": "tiny"}, "archived": false, "fork": false}
+]}

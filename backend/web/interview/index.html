@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PrepVerse Mock Interview</title>
+  <meta name="description" content="Run an AI mock interview for Data Science, ML, GenAI or AI Agent roles.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='9' fill='%235b4cf0'/><text x='16' y='22' font-size='17' font-family='Arial' font-weight='800' fill='white' text-anchor='middle'>P</text></svg>">
+  <link rel="stylesheet" href="/assets/styles.css">
+  <script src="/assets/app.js"></script>
+  <script src="/assets/interview.js" defer></script>
+</head>
+<body>
+  <header id="site-header"></header>
+
+  <main class="container">
+    <!-- ===== Setup ===== -->
+    <section id="view-setup">
+      <div class="page-head">
+        <span class="eyebrow">Mock interview</span>
+        <h1 style="font-size:clamp(1.8rem,4vw,2.4rem)">Set up your interview</h1>
+        <p class="muted">Tell us what you're preparing for. The AI plans questions to match.</p>
+      </div>
+
+      <form id="setup-form" class="layout-side" novalidate>
+        <div class="card">
+          <div id="setup-error" class="alert hidden" role="alert"></div>
+
+          <div class="form-row">
+            <label class="field">Target role</label>
+            <div class="option-grid" id="role-options"></div>
+          </div>
+
+          <div class="form-row">
+            <label class="field">Your level</label>
+            <div class="option-grid" id="level-options"></div>
+          </div>
+
+          <div class="form-row">
+            <label class="field">Topics <span class="hint">· pick at least one</span></label>
+            <div class="option-grid" id="module-options"></div>
+          </div>
+
+          <div class="grid grid-2 form-row">
+            <div>
+              <label class="field" for="company_type">Company type</label>
+              <select id="company_type" name="company_type">
+                <option value="product">Product company</option>
+                <option value="faang">Big Tech (FAANG-style)</option>
+                <option value="startup">Startup</option>
+                <option value="service">IT services</option>
+              </select>
+            </div>
+            <div>
+              <label class="field" for="num_questions">Number of questions</label>
+              <select id="num_questions" name="num_questions">
+                <option value="3">3 · quick (~8 min)</option>
+                <option value="5" selected>5 · standard (~15 min)</option>
+                <option value="6">6 · full (~20 min)</option>
+                <option value="8">8 · marathon (~30 min)</option>
+              </select>
+            </div>
+          </div>
+
+          <details class="faq" style="border-bottom:0;padding-top:4px">
+            <summary>Tailor to your resume or a job description <span class="badge badge-muted">Optional</span></summary>
+            <div style="margin-top:16px">
+              <div class="form-row">
+                <label class="field" for="resume">Resume <span class="hint">· paste text</span></label>
+                <textarea id="resume" name="resume" maxlength="8000" placeholder="Paste your resume text here…"></textarea>
+              </div>
+              <div>
+                <label class="field" for="job_description">Job description <span class="hint">· paste text</span></label>
+                <textarea id="job_description" name="job_description" maxlength="8000" placeholder="Paste the job description here…"></textarea>
+              </div>
+            </div>
+          </details>
+        </div>
+
+        <aside class="card sticky">
+          <h3>Your interview</h3>
+          <div id="summary"></div>
+          <button type="submit" class="btn btn-primary btn-block btn-lg" id="start-btn" style="margin-top:18px">Start interview</button>
+          <p class="small muted" style="margin:12px 0 0">Answer in your own words, the way you would out loud. You can end early and still get a report.</p>
+        </aside>
+      </form>
+    </section>
+
+    <!-- ===== Loading ===== -->
+    <section id="view-loading" class="hidden">
+      <div class="card center" style="max-width:520px;margin:80px auto;padding:48px 24px">
+        <div class="spinner"></div>
+        <h3 id="loading-title">Planning your interview…</h3>
+        <p class="muted" id="loading-text" style="margin:0">Picking questions that match your role and level.</p>
+      </div>
+    </section>
+
+    <!-- ===== Live interview ===== -->
+    <section id="view-live" class="hidden">
+      <div class="layout-side" style="padding-top:32px">
+        <div>
+          <div id="thread" class="thread" aria-live="polite"></div>
+          <div id="live-error" class="alert hidden" role="alert"></div>
+          <form id="answer-form" class="composer">
+            <label for="answer" class="hidden">Your answer</label>
+            <textarea id="answer" maxlength="6000" placeholder="Type your answer… (⌘/Ctrl + Enter to send)"></textarea>
+            <div class="composer-bar">
+              <span class="small muted" id="char-count">0 / 6000</span>
+              <div style="display:flex;gap:8px;flex-wrap:wrap">
+                <button type="button" class="btn btn-ghost" id="skip-btn" title="Send &quot;I don't know&quot; and move on">I don't know</button>
+                <button type="submit" class="btn btn-primary" id="send-btn">Send answer</button>
+              </div>
+            </div>
+          </form>
+        </div>
+
+        <aside class="card sticky">
+          <div style="display:flex;justify-content:space-between;align-items:baseline">
+            <h3 style="margin:0">Progress</h3>
+            <span class="small muted" id="timer">00:00</span>
+          </div>
+          <p class="small muted" id="progress-label" style="margin:8px 0">Question 1 of 5</p>
+          <div class="progress"><div id="progress-bar" style="width:0%"></div></div>
+          <div style="margin-top:18px" id="live-meta"></div>
+          <button class="btn btn-ghost btn-block" id="end-btn" style="margin-top:18px">End &amp; get report</button>
+          <p class="small muted" style="margin:14px 0 0">💡 Structure helps: define it, explain how it works, discuss trade-offs, give an example.</p>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ===== Report ===== -->
+    <section id="view-report" class="hidden" style="padding-top:32px"></section>
+  </main>
+
+  <footer id="site-footer"></footer>
+</body>
+</html>

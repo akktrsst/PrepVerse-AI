@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PrepVerse Learn Hub</title>
+  <meta name="description" content="The best videos, papers, blogs, repos and discussions for every AI and data interview topic, summarised and ranked daily.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='9' fill='%235b4cf0'/><text x='16' y='22' font-size='17' font-family='Arial' font-weight='800' fill='white' text-anchor='middle'>P</text></svg>">
+  <link rel="stylesheet" href="/assets/styles.css">
+  <script src="/assets/app.js"></script>
+  <script src="/assets/highlight.js" defer></script>
+  <script src="/assets/learn.js" defer></script>
+</head>
+<body data-page="learn-index">
+  <header id="site-header"></header>
+  <main class="container">
+    <div class="page-head">
+      <span class="eyebrow">Learn Hub</span>
+      <h1 style="font-size:clamp(1.8rem,4vw,2.5rem)">Everything worth learning, in one place</h1>
+      <p class="muted" style="max-width:720px">The best YouTube videos, papers, blogs, GitHub repos and discussions for each topic. Each one is summarised by AI, tagged by difficulty, and refreshed daily.</p>
+    </div>
+    <form id="search-form" class="search-row" role="search">
+      <label for="search-q" class="hidden">Search resources</label>
+      <input type="text" id="search-q" placeholder="Search by idea, e.g. “how to evaluate retrieval quality”" maxlength="200" autocomplete="off">
+      <button class="btn btn-primary" type="submit">Search</button>
+    </form>
+    <div id="search-results"></div>
+    <div id="browse">
+      <div class="tabs" id="module-tabs" role="tablist" aria-label="Modules"></div>
+      <div class="grid grid-3" id="topic-grid"><p class="muted">Loading topics…</p></div>
+    </div>
+  </main>
+  <footer id="site-footer"></footer>
+</body>
+</html>

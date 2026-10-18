@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PrepVerse Notes</title>
+  <meta name="description" content="Your highlights, notes and AI study notes, organised by topic.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='9' fill='%235b4cf0'/><text x='16' y='22' font-size='17' font-family='Arial' font-weight='800' fill='white' text-anchor='middle'>P</text></svg>">
+  <link rel="stylesheet" href="/assets/styles.css">
+  <script src="/assets/app.js"></script>
+  <script src="/assets/highlight.js" defer></script>
+  <script src="/assets/notes.js" defer></script>
+</head>
+<body data-page="notes">
+  <header id="site-header"></header>
+  <main class="container" id="notes-root">
+    <div class="page-head" style="display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap">
+      <div>
+        <span class="eyebrow">Notebook</span>
+        <h1 style="font-size:clamp(1.8rem,4vw,2.4rem);margin:0" id="heading">All notes</h1>
+      </div>
+      <div class="res-actions">
+        <button class="btn btn-ghost" id="export-btn">⬇ Export Markdown</button>
+        <a class="btn btn-ghost" id="discuss-btn" href="/discuss/">🎙 Discuss these</a>
+        <button class="btn btn-primary" id="new-btn">+ New note</button>
+      </div>
+    </div>
+    <div class="notes-layout">
+      <aside class="card topic-list sticky" style="padding:10px" aria-label="Topics" id="topic-list"></aside>
+      <section>
+        <div style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:center;margin-bottom:16px">
+          <div class="tabs" id="kind-tabs" style="margin:0"></div>
+          <div style="display:flex;gap:10px;align-items:center">
+            <div id="color-filter" style="display:flex;gap:6px" aria-label="Filter by colour"></div>
+            <input type="text" id="search" placeholder="Search notes" style="width:180px" aria-label="Search notes">
+          </div>
+        </div>
+        <div class="stack" id="feed"><p class="muted">Loading…</p></div>
+      </section>
+    </div>
+  </main>
+  <footer id="site-footer"></footer>
+</body>
+</html>

@@ -1,0 +1,86 @@
+[
+  {
+    "module": "ai_agents",
+    "topic": "What makes an agent",
+    "kind": "concept",
+    "difficulty": "easy",
+    "question": "What is the difference between an LLM workflow and an AI agent? When would you not use an agent?",
+    "key_points": [
+      "Workflow: predefined code paths that call LLMs in fixed steps",
+      "Agent: the LLM decides dynamically which tools to call and when it's done, in a loop",
+      "Agents trade predictability, cost and latency for flexibility",
+      "Prefer simple workflows when the task steps are known in advance",
+      "Agents need guardrails: step limits, tool permissions, evaluation"
+    ]
+  },
+  {
+    "module": "ai_agents",
+    "topic": "Tool calling",
+    "kind": "concept",
+    "difficulty": "medium",
+    "question": "Explain how tool (function) calling works with an LLM. What makes a tool definition good or bad?",
+    "key_points": [
+      "Model receives tool names, descriptions and JSON schemas; it emits a structured call instead of text",
+      "The application executes the tool and returns the result to the model, looping until a final answer",
+      "Good tools have clear names, precise descriptions and constrained parameters",
+      "Return concise, informative results and actionable errors",
+      "Too many overlapping tools confuse the model"
+    ]
+  },
+  {
+    "module": "ai_agents",
+    "topic": "Model Context Protocol",
+    "kind": "concept",
+    "difficulty": "medium",
+    "question": "What is the Model Context Protocol (MCP), and what problem does it solve?",
+    "key_points": [
+      "Open protocol for connecting AI applications to external tools and data sources",
+      "Client-server architecture: hosts run MCP clients that connect to MCP servers",
+      "Servers expose tools, resources and prompts in a standard way",
+      "Solves the N-by-M integration problem: build a connector once, use it across many AI apps",
+      "Security considerations: authentication, permissions, and untrusted tool output (prompt injection)"
+    ]
+  },
+  {
+    "module": "ai_agents",
+    "topic": "Agent memory",
+    "kind": "concept",
+    "difficulty": "medium",
+    "question": "How would you give an agent memory across long conversations and multiple sessions?",
+    "key_points": [
+      "Short-term memory: the context window, with summarization or trimming of older turns",
+      "Long-term memory: store facts or episodes externally (vector DB, key-value, files) and retrieve when relevant",
+      "Decide what to write: extraction of durable facts vs raw transcripts",
+      "Handle staleness, contradictions and deletion (user privacy)",
+      "Retrieval quality and token budget trade-offs"
+    ]
+  },
+  {
+    "module": "ai_agents",
+    "topic": "Agent reliability and evals",
+    "kind": "concept",
+    "difficulty": "hard",
+    "question": "Your agent works in demos but fails unpredictably in production. How do you make it reliable?",
+    "key_points": [
+      "Trace and log every step (prompts, tool calls, results) to find failure modes",
+      "Build an eval suite from real failures; measure task success end-to-end and per step",
+      "Constrain the agent: fewer, better tools; step and cost limits; structured outputs",
+      "Add verification steps, retries with feedback, and human-in-the-loop for risky actions",
+      "Guard against prompt injection from tool outputs and enforce least-privilege permissions"
+    ]
+  },
+  {
+    "module": "ai_agents",
+    "topic": "Multi-agent support system design",
+    "kind": "system_design",
+    "difficulty": "hard",
+    "question": "Design a multi-agent customer support system that can answer questions, look up orders and issue refunds.",
+    "key_points": [
+      "Router or orchestrator agent that classifies intent and delegates to specialist agents",
+      "Specialists with scoped tools: knowledge-base RAG, order lookup, refunds",
+      "Refunds need policy checks, limits and human approval above thresholds",
+      "Shared state and handoff protocol between agents; escalation to humans",
+      "Observability, evals, cost/latency budgets, and justification for multi-agent vs a single agent"
+    ]
+  }
+]

@@ -1,0 +1,86 @@
+[
+  {
+    "module": "genai_llms",
+    "topic": "Self-attention",
+    "kind": "concept",
+    "difficulty": "medium",
+    "question": "Explain how self-attention works in a transformer. Why is it scaled by the square root of the key dimension?",
+    "key_points": [
+      "Each token is projected into query, key and value vectors",
+      "Attention weights are softmax of query-key dot products; output is the weighted sum of values",
+      "Scaling by sqrt(d_k) keeps dot products from growing large, which would saturate softmax and shrink gradients",
+      "Multi-head attention lets the model attend to different relationships in parallel",
+      "Cost is quadratic in sequence length"
+    ]
+  },
+  {
+    "module": "genai_llms",
+    "topic": "RAG fundamentals",
+    "kind": "concept",
+    "difficulty": "easy",
+    "question": "What is Retrieval-Augmented Generation, and when would you choose it over fine-tuning?",
+    "key_points": [
+      "RAG retrieves relevant documents at query time and adds them to the prompt",
+      "Good for fresh, private or frequently changing knowledge, and enables citations",
+      "Fine-tuning changes model behavior, style or format; it is poor at injecting facts reliably",
+      "RAG is cheaper to update: re-index documents instead of retraining",
+      "They can be combined"
+    ]
+  },
+  {
+    "module": "genai_llms",
+    "topic": "RAG chunking and retrieval quality",
+    "kind": "concept",
+    "difficulty": "medium",
+    "question": "Your RAG chatbot often gives answers that miss relevant information that is in the documents. How would you debug and improve retrieval?",
+    "key_points": [
+      "Evaluate retrieval separately from generation (recall@k on a labeled query set)",
+      "Tune chunk size and overlap; respect document structure",
+      "Hybrid search: combine keyword (BM25) and dense vector retrieval",
+      "Add a reranker (cross-encoder) over a larger candidate set",
+      "Query rewriting or expansion, and metadata filters"
+    ]
+  },
+  {
+    "module": "genai_llms",
+    "topic": "LoRA fine-tuning",
+    "kind": "concept",
+    "difficulty": "medium",
+    "question": "How does LoRA work, and why is it popular for fine-tuning large language models?",
+    "key_points": [
+      "Freezes the pretrained weights and learns a low-rank update (two small matrices A and B) for selected layers",
+      "Drastically fewer trainable parameters, so less GPU memory and storage",
+      "Adapters can be merged into the base weights for no inference overhead, or swapped per task",
+      "Rank and which layers to adapt are key hyperparameters",
+      "QLoRA combines LoRA with a quantized base model to cut memory further"
+    ]
+  },
+  {
+    "module": "genai_llms",
+    "topic": "LLM evaluation",
+    "kind": "concept",
+    "difficulty": "hard",
+    "question": "How would you evaluate an LLM-powered customer support assistant before and after launch?",
+    "key_points": [
+      "Build a representative golden dataset of real queries with expected outcomes",
+      "Combine automatic metrics, LLM-as-judge with a clear rubric, and human review",
+      "Validate the LLM judge against human labels and watch for its biases",
+      "Measure groundedness/hallucination, task success, safety, latency and cost",
+      "Post-launch: online metrics (resolution rate, escalations, user feedback) and regression tests on every prompt or model change"
+    ]
+  },
+  {
+    "module": "genai_llms",
+    "topic": "RAG chatbot system design",
+    "kind": "system_design",
+    "difficulty": "hard",
+    "question": "Design a RAG chatbot over a company's internal documents that serves 1 million users.",
+    "key_points": [
+      "Ingestion pipeline: parsing, chunking, embedding, incremental re-indexing",
+      "Vector store choice with metadata filters and per-user access control enforced at retrieval",
+      "Serving path: query rewrite, hybrid retrieval, reranking, generation with citations, streaming",
+      "Scale and cost: caching, model routing (small vs large models), rate limits",
+      "Evaluation, monitoring and feedback loop for quality and hallucinations"
+    ]
+  }
+]

@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PrepVerse AI</title>
+  <meta name="description" content="AI mock interviews for Data Science, ML, GenAI and AI Agent roles, with adaptive follow-ups and detailed feedback.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='9' fill='%235b4cf0'/><text x='16' y='22' font-size='17' font-family='Arial' font-weight='800' fill='white' text-anchor='middle'>P</text></svg>">
+  <link rel="stylesheet" href="/assets/styles.css">
+  <script src="/assets/app.js"></script>
+</head>
+<body>
+  <header id="site-header"></header>
+
+  <main>
+    <!-- Hero -->
+    <section class="hero container">
+      <span class="badge">New · Agents &amp; MCP interview track</span>
+      <h1 style="margin-top:18px">Ace your <span class="gradient-text">AI &amp; Data</span> interviews</h1>
+      <p class="lead">Practice with an AI interviewer that digs deeper like a real one, grades you on a clear rubric, and tells you exactly what to study next.</p>
+      <div class="hero-cta">
+        <a class="btn btn-primary btn-lg" href="/interview/">Start a free mock interview</a>
+        <a class="btn btn-ghost btn-lg" href="/pricing/">See pricing</a>
+      </div>
+      <p class="small muted" style="margin-top:14px">No credit card · Takes about 15 minutes</p>
+
+      <div class="card hero-demo" aria-label="Example interview exchange">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;flex-wrap:wrap;gap:8px">
+          <strong>GenAI &amp; LLMs · Question 2 of 6</strong>
+          <span class="badge badge-muted">Example</span>
+        </div>
+        <div class="thread">
+          <div class="bubble ai"><span class="who">Interviewer</span>Your RAG chatbot keeps missing information that's in the documents. How would you debug it?</div>
+          <div class="bubble me"><span class="who">You</span>I'd try a better embedding model and increase top-k.</div>
+          <div class="bubble ai"><span class="who">Follow-up</span>Before changing models, how would you tell whether the problem is retrieval or generation?</div>
+        </div>
+        <p class="small muted" style="margin:0">↑ Shallow answers get probed with follow-ups, just like a real interview.</p>
+      </div>
+    </section>
+
+    <!-- Loop -->
+    <section class="section" style="background:var(--surface-2)">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">How it works</span>
+          <h2>Find your gaps. Fix them. Prove it.</h2>
+          <p class="muted">Every session feeds the next one, so your prep gets more targeted as you go.</p>
+        </div>
+        <div class="loop">
+          <div class="card"><span class="step-num">STEP 1</span><h3>Pick your target</h3><p class="muted small">Choose a role, level, company type and topics. Optionally paste your resume and the job description.</p></div>
+          <div class="card"><span class="step-num">STEP 2</span><h3>Interview live</h3><p class="muted small">Answer one question at a time. The AI asks follow-ups when your answer is vague or misses something.</p></div>
+          <div class="card"><span class="step-num">STEP 3</span><h3>Get scored</h3><p class="muted small">Each answer is graded on accuracy, depth, structure and communication, with a model answer to compare.</p></div>
+          <div class="card"><span class="step-num">STEP 4</span><h3>Study &amp; retest</h3><p class="muted small">Weak topics and a concrete study plan go to your dashboard. Retest and watch your readiness climb.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tracks -->
+    <section class="section">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">Interview tracks</span>
+          <h2>Built for modern AI roles</h2>
+          <p class="muted">Questions cover what interviewers actually ask in 2026, from statistics to multi-agent systems.</p>
+        </div>
+        <div class="grid grid-3">
+          <a class="card" href="/interview/?module=data_science" style="color:inherit;text-decoration:none">
+            <div class="icon-tile">📊</div>
+            <h3>Data Science</h3>
+            <p class="muted small">Statistics, A/B testing, SQL, metrics, product case studies.</p>
+            <span class="chip">A/B tests</span><span class="chip">SQL</span><span class="chip">p-values</span>
+          </a>
+          <a class="card" href="/interview/?module=genai_llms" style="color:inherit;text-decoration:none">
+            <div class="icon-tile">🧠</div>
+            <h3>GenAI &amp; LLMs</h3>
+            <p class="muted small">Transformers, RAG, fine-tuning, evaluation, LLM system design.</p>
+            <span class="chip">RAG</span><span class="chip">LoRA</span><span class="chip">Evals</span>
+          </a>
+          <a class="card" href="/interview/?module=ai_agents" style="color:inherit;text-decoration:none">
+            <div class="icon-tile">🤖</div>
+            <h3>AI Agents</h3>
+            <p class="muted small">Tool calling, memory, MCP, reliability, multi-agent architectures.</p>
+            <span class="chip">MCP</span><span class="chip">Tool use</span><span class="chip">Memory</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features -->
+    <section class="section" style="background:var(--surface-2)">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">Why PrepVerse</span>
+          <h2>Learn it, discuss it, prove it</h2>
+        </div>
+        <div class="grid grid-3">
+          <div class="card"><div class="icon-tile">🎯</div><h3>Adaptive follow-ups</h3><p class="muted small">Up to two probing follow-ups per question. Buzzwords won't get you through.</p></div>
+          <div class="card"><div class="icon-tile">📝</div><h3>Rubric-based scoring</h3><p class="muted small">Clear 1–5 scores on four dimensions, plus the points you covered and missed.</p></div>
+          <div class="card"><div class="icon-tile">📄</div><h3>Resume &amp; JD tailoring</h3><p class="muted small">Paste a job description and get the questions that role is likely to ask.</p></div>
+          <div class="card"><div class="icon-tile">📈</div><h3>Readiness tracking</h3><p class="muted small">See your score trend and recurring weak topics across sessions.</p></div>
+          <a class="card" href="/learn/" style="color:inherit;text-decoration:none"><div class="icon-tile">📚</div><h3>Learn Hub <span class="badge badge-good">New</span></h3><p class="muted small">The best videos, papers, blogs, repos and discussions for every topic, summarised by AI and refreshed daily.</p></a>
+          <a class="card" href="/discuss/" style="color:inherit;text-decoration:none"><div class="icon-tile">🎙</div><h3>Voice Discuss <span class="badge badge-good">New</span></h3><p class="muted small">Talk through any topic with an AI tutor out loud. Answers cite the resources they're based on.</p></a>
+          <a class="card" href="/notes/" style="color:inherit;text-decoration:none"><div class="icon-tile">🖍</div><h3>Smart notes <span class="badge badge-good">New</span></h3><p class="muted small">Highlight anything to save it, get AI study notes after each discussion, and export to Markdown.</p></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section">
+      <div class="container">
+        <div class="cta-band">
+          <h2>Your next interview is closer than you think</h2>
+          <p>Run a free mock interview now and get a detailed report in minutes.</p>
+          <a class="btn btn-lg" href="/interview/">Start practicing free</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="site-footer"></footer>
+</body>
+</html>

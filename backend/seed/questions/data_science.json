@@ -1,0 +1,87 @@
+[
+  {
+    "module": "data_science",
+    "topic": "Bias-variance trade-off",
+    "kind": "concept",
+    "difficulty": "easy",
+    "question": "Explain the bias-variance trade-off. How would you tell whether a model is suffering from high bias or high variance?",
+    "key_points": [
+      "Bias: error from overly simple assumptions (underfitting)",
+      "Variance: error from sensitivity to the training data (overfitting)",
+      "Expected error decomposes into bias squared + variance + irreducible noise",
+      "Diagnose with train vs validation error: both high = bias; low train, high validation = variance",
+      "Fixes: more features or model capacity for bias; more data, regularization or simpler models for variance"
+    ]
+  },
+  {
+    "module": "data_science",
+    "topic": "A/B test design",
+    "kind": "case_study",
+    "difficulty": "medium",
+    "question": "Your product team wants to test a new checkout button. Walk me through how you would design and analyze the A/B test.",
+    "key_points": [
+      "Define a primary metric (e.g. conversion rate) and guardrail metrics",
+      "Choose the randomization unit (user, not session) and check for interference",
+      "Power analysis: minimum detectable effect, significance level, power determine sample size",
+      "Fix duration up front and avoid peeking, or use sequential testing",
+      "Check sample ratio mismatch before reading results",
+      "Interpret statistical vs practical significance and segment effects carefully"
+    ]
+  },
+  {
+    "module": "data_science",
+    "topic": "p-values",
+    "kind": "concept",
+    "difficulty": "easy",
+    "question": "What is a p-value, and what are common ways people misinterpret it?",
+    "key_points": [
+      "Probability of data at least as extreme as observed, assuming the null hypothesis is true",
+      "Not the probability that the null hypothesis is true",
+      "Not a measure of effect size or practical importance",
+      "Multiple comparisons inflate false positives (corrections like Bonferroni or FDR)",
+      "Threshold of 0.05 is a convention, not a law"
+    ]
+  },
+  {
+    "module": "data_science",
+    "topic": "Imbalanced classification metrics",
+    "kind": "concept",
+    "difficulty": "medium",
+    "question": "You're building a fraud detection model where 0.5% of transactions are fraud. Which metrics would you use and why not accuracy?",
+    "key_points": [
+      "Accuracy is misleading: predicting all non-fraud gives 99.5%",
+      "Precision, recall and F1 focus on the positive class",
+      "PR-AUC is more informative than ROC-AUC under heavy imbalance",
+      "Pick the decision threshold from business costs of false positives vs false negatives",
+      "Handling imbalance: class weights, resampling, but evaluate on the true distribution"
+    ]
+  },
+  {
+    "module": "data_science",
+    "topic": "SQL window functions",
+    "kind": "concept",
+    "difficulty": "medium",
+    "question": "How would you find each user's second most recent order in SQL? Explain the difference between ROW_NUMBER, RANK and DENSE_RANK.",
+    "key_points": [
+      "Use a window function partitioned by user and ordered by order date descending",
+      "Filter where the row number equals 2 in an outer query or CTE (window results can't be filtered in WHERE directly)",
+      "ROW_NUMBER gives unique sequential numbers even for ties",
+      "RANK gives ties the same rank and skips the following ranks",
+      "DENSE_RANK gives ties the same rank without gaps"
+    ]
+  },
+  {
+    "module": "data_science",
+    "topic": "Metric drop investigation",
+    "kind": "case_study",
+    "difficulty": "medium",
+    "question": "Daily active users dropped 10% yesterday. How would you investigate?",
+    "key_points": [
+      "First rule out data or logging issues (pipeline delays, tracking changes)",
+      "Check whether the drop is sudden or gradual and compare against seasonality and holidays",
+      "Segment by platform, app version, geography, acquisition channel and new vs returning users",
+      "Correlate with internal changes (releases, experiments, outages) and external events",
+      "Form hypotheses, validate with data, and communicate impact and next steps"
+    ]
+  }
+]

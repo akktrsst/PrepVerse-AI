@@ -1,0 +1,14 @@
+[
+  {"name": "OpenAI", "url": "https://openai.com/news/rss.xml", "max_age_days": 365},
+  {"name": "Google DeepMind", "url": "https://deepmind.google/blog/rss.xml", "max_age_days": 365},
+  {"name": "Google Research", "url": "https://research.google/blog/rss/", "max_age_days": 365},
+  {"name": "Hugging Face", "url": "https://huggingface.co/blog/feed.xml", "max_age_days": 365},
+  {"name": "AWS Machine Learning", "url": "https://aws.amazon.com/blogs/machine-learning/feed/", "max_age_days": 365},
+  {"name": "Netflix Tech Blog", "url": "https://netflixtechblog.com/feed", "max_age_days": 730},
+  {"name": "Simon Willison", "url": "https://simonwillison.net/atom/everything/", "max_age_days": 365},
+  {"name": "Sebastian Raschka", "url": "https://magazine.sebastianraschka.com/feed", "max_age_days": 1095},
+  {"name": "Eugene Yan", "url": "https://eugeneyan.com/rss/", "max_age_days": 1825},
+  {"name": "Chip Huyen", "url": "https://huyenchip.com/feed.xml", "max_age_days": 1825},
+  {"name": "Lilian Weng", "url": "https://lilianweng.github.io/index.xml", "max_age_days": 2555},
+  {"name": "Jay Alammar", "url": "https://jalammar.github.io/feed.xml", "max_age_days": 2555}
+]

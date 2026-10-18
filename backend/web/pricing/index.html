@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PrepVerse Pricing</title>
+  <meta name="description" content="Simple USD pricing for PrepVerse AI: start free, upgrade when you're ready.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='9' fill='%235b4cf0'/><text x='16' y='22' font-size='17' font-family='Arial' font-weight='800' fill='white' text-anchor='middle'>P</text></svg>">
+  <link rel="stylesheet" href="/assets/styles.css">
+  <script src="/assets/app.js"></script>
+</head>
+<body>
+  <header id="site-header"></header>
+
+  <main>
+    <section class="section container" style="padding-bottom:40px">
+      <div class="section-head">
+        <span class="eyebrow">Pricing</span>
+        <h1 style="font-size:clamp(2rem,4vw,2.8rem)">Simple pricing. Start free.</h1>
+        <p class="muted">Practice for free, then upgrade when you're serious about interview day. Cancel anytime.</p>
+        <div class="toggle" role="group" aria-label="Billing period">
+          <button type="button" data-period="monthly" class="on">Monthly</button>
+          <button type="button" data-period="annual">Annual <span class="badge badge-good" style="margin-left:4px">Save 25%</span></button>
+        </div>
+      </div>
+
+      <div class="grid grid-4">
+        <!-- Free -->
+        <div class="card plan">
+          <h3>Free</h3>
+          <p class="muted small">Try the full interview loop.</p>
+          <div class="price">$0<small> /month</small></div>
+          <p class="small muted">&nbsp;</p>
+          <ul class="check">
+            <li>3 mock interviews / month</li>
+            <li>All 3 tracks (DS, GenAI, Agents)</li>
+            <li>Adaptive follow-up questions</li>
+            <li>Scores &amp; feedback per answer</li>
+            <li>Full Learn Hub access</li>
+            <li>15 Discuss messages / day, 50 notes</li>
+            <li class="no">Voice Discuss</li>
+          </ul>
+          <a class="btn btn-ghost btn-block" href="/interview/">Start free</a>
+        </div>
+
+        <!-- Pro -->
+        <div class="card plan featured">
+          <span class="badge ribbon">Most popular</span>
+          <h3>Pro</h3>
+          <p class="muted small">For active job seekers.</p>
+          <div class="price" data-monthly="12" data-annual="9">$12<small> /month</small></div>
+          <p class="small muted" data-note-monthly="Billed monthly" data-note-annual="$108 billed yearly">Billed monthly</p>
+          <ul class="check">
+            <li>30 mock interviews / month</li>
+            <li>Everything in Free</li>
+            <li>Model answers for every question</li>
+            <li>Personalized study plan</li>
+            <li>Voice Discuss with AI tutor</li>
+            <li>Unlimited notes &amp; Markdown export</li>
+            <li>System design rounds</li>
+          </ul>
+          <button class="btn btn-primary btn-block" data-plan="Pro">Get Pro</button>
+        </div>
+
+        <!-- Premium -->
+        <div class="card plan">
+          <h3>Premium</h3>
+          <p class="muted small">For final-round preparation.</p>
+          <div class="price" data-monthly="24" data-annual="18">$24<small> /month</small></div>
+          <p class="small muted" data-note-monthly="Billed monthly" data-note-annual="$216 billed yearly">Billed monthly</p>
+          <ul class="check">
+            <li>Unlimited mock interviews*</li>
+            <li>Everything in Pro</li>
+            <li>Resume &amp; job-description tailoring</li>
+            <li>Company-style interviews</li>
+            <li>Voice interviews <span class="badge badge-muted">Soon</span></li>
+            <li>Priority support</li>
+          </ul>
+          <button class="btn btn-ghost btn-block" data-plan="Premium">Get Premium</button>
+        </div>
+
+        <!-- Teams -->
+        <div class="card plan">
+          <h3>Teams</h3>
+          <p class="muted small">Colleges, bootcamps &amp; L&amp;D.</p>
+          <div class="price" data-monthly="8" data-annual="6">$8<small> /seat/mo</small></div>
+          <p class="small muted" data-note-monthly="Minimum 10 seats" data-note-annual="Minimum 10 seats, billed yearly">Minimum 10 seats</p>
+          <ul class="check">
+            <li>Pro features for every seat</li>
+            <li>Cohort readiness dashboard</li>
+            <li>Placement analytics</li>
+            <li>Custom question banks</li>
+            <li>SSO &amp; admin controls</li>
+            <li>Dedicated onboarding</li>
+          </ul>
+          <button class="btn btn-ghost btn-block" data-plan="Teams">Contact sales</button>
+        </div>
+      </div>
+      <p class="small muted center" style="margin-top:16px">Prices in USD. Taxes may apply. *Fair-use limits apply to prevent abuse.</p>
+    </section>
+
+    <!-- Comparison -->
+    <section class="section container" style="padding-top:20px">
+      <div class="section-head"><h2>Compare plans</h2></div>
+      <div class="card table-wrap">
+        <table class="compare">
+          <thead>
+            <tr><th>Feature</th><th>Free</th><th>Pro</th><th>Premium</th><th>Teams</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Mock interviews per month</td><td>3</td><td>30</td><td>Unlimited*</td><td>30 / seat</td></tr>
+            <tr><td>Questions per interview</td><td>Up to 6</td><td>Up to 8</td><td>Up to 8</td><td>Up to 8</td></tr>
+            <tr><td>Adaptive follow-ups</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td></tr>
+            <tr><td>Rubric scores &amp; feedback</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td></tr>
+            <tr><td>Model answers</td><td>–</td><td>✓</td><td>✓</td><td>✓</td></tr>
+            <tr><td>Study plan &amp; weak-topic tracking</td><td>Basic</td><td>✓</td><td>✓</td><td>✓</td></tr>
+            <tr><td>System design rounds</td><td>–</td><td>✓</td><td>✓</td><td>✓</td></tr>
+            <tr><td>Learn Hub (videos, papers, blogs, repos)</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td></tr>
+            <tr><td>Discuss with AI tutor (text)</td><td>15 / day</td><td>Unlimited*</td><td>Unlimited*</td><td>Unlimited*</td></tr>
+            <tr><td>Voice Discuss</td><td>–</td><td>✓</td><td>✓</td><td>✓</td></tr>
+            <tr><td>Highlights &amp; notes</td><td>50</td><td>Unlimited</td><td>Unlimited</td><td>Unlimited</td></tr>
+            <tr><td>AI session notes &amp; Markdown export</td><td>–</td><td>✓</td><td>✓</td><td>✓</td></tr>
+            <tr><td>Resume &amp; JD tailoring</td><td>–</td><td>–</td><td>✓</td><td>Add-on</td></tr>
+            <tr><td>Voice interviews</td><td>–</td><td>–</td><td>Soon</td><td>Soon</td></tr>
+            <tr><td>Cohort analytics</td><td>–</td><td>–</td><td>–</td><td>✓</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section container" style="padding-top:20px;max-width:760px">
+      <div class="section-head"><h2>Frequently asked questions</h2></div>
+      <details class="faq"><summary>Is the free plan really free?</summary><p>Yes. You get 3 full mock interviews every month with scores and feedback. No credit card needed.</p></details>
+      <details class="faq"><summary>How does the AI grade my answers?</summary><p>Each answer is scored 1–5 on accuracy, depth, structure and communication against key points an expert would cover. You see what you covered, what you missed, and how a strong candidate would answer.</p></details>
+      <details class="faq"><summary>What is Voice Discuss?</summary><p>Talk through any topic out loud with an AI tutor. It answers using the curated videos, papers and blogs in the Learn Hub, cites them, and turns the conversation into study notes when you're done. Voice works best in Chrome and Edge.</p></details>
+      <details class="faq"><summary>Can I cancel anytime?</summary><p>Yes. Paid plans renew monthly or yearly and you can cancel whenever you like. You keep access until the end of the billing period.</p></details>
+      <details class="faq"><summary>Do you offer student discounts?</summary><p>Annual plans already save 25%. Colleges and bootcamps can get Teams pricing for their whole cohort.</p></details>
+      <details class="faq"><summary>Which roles do you cover?</summary><p>Data Analyst, Data Scientist, ML Engineer, AI Engineer and Agent Developer, across beginner, intermediate and advanced levels.</p></details>
+    </section>
+  </main>
+
+  <footer id="site-footer"></footer>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const buttons = document.querySelectorAll("[data-period]");
+      function setPeriod(period) {
+        buttons.forEach((b) => b.classList.toggle("on", b.dataset.period === period));
+        document.querySelectorAll(".price[data-monthly]").forEach((p) => {
+          const unit = p.querySelector("small").textContent;
+          p.textContent = `$${p.dataset[period]}`;
+          p.append(PV.el("small", {}, unit));
+        });
+        document.querySelectorAll("[data-note-monthly]").forEach((n) => {
+          n.textContent = period === "annual" ? n.dataset.noteAnnual : n.dataset.noteMonthly;
+        });
+        PV.store.set("pv.billing", period);
+      }
+      buttons.forEach((b) => b.addEventListener("click", () => setPeriod(b.dataset.period)));
+      setPeriod(PV.store.get("pv.billing", "monthly"));
+
+      document.querySelectorAll("[data-plan]").forEach((btn) => btn.addEventListener("click", () => {
+        const plan = btn.dataset.plan;
+        PV.modal(
+          plan === "Teams" ? "Teams is coming soon" : `${plan} checkout is coming soon`,
+          "Paid plans are launching shortly. In the meantime, every feature in the free interview is open to you.",
+          [{ label: "Close" }, { label: "Start free interview", primary: true, href: "/interview/" }],
+        );
+      }));
+    });
+  </script>
+</body>
+</html>

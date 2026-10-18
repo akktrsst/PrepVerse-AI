@@ -1,0 +1,7 @@
+{"items": [
+  {"id": "abc123XYZ01", "snippet": {"title": "RAG Explained in 12 Minutes", "channelTitle": "AI Explained", "publishedAt": "2025-06-01T10:00:00Z",
+   "description": "Retrieval augmented generation, chunking &amp; reranking.", "thumbnails": {"high": {"url": "https://i.ytimg.com/vi/abc123XYZ01/hqdefault.jpg"}}},
+   "statistics": {"viewCount": "250000", "likeCount": "9000"}, "contentDetails": {"duration": "PT12M30S"}},
+  {"id": "short000001", "snippet": {"title": "RAG in 30 seconds #shorts", "channelTitle": "Clips", "publishedAt": "2025-07-01T10:00:00Z", "description": "", "thumbnails": {}},
+   "statistics": {"viewCount": "999999"}, "contentDetails": {"duration": "PT45S"}}
+]}

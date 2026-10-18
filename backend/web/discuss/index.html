@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PrepVerse Discuss</title>
+  <meta name="description" content="Talk through AI and data topics with a voice AI tutor grounded in curated resources.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='9' fill='%235b4cf0'/><text x='16' y='22' font-size='17' font-family='Arial' font-weight='800' fill='white' text-anchor='middle'>P</text></svg>">
+  <link rel="stylesheet" href="/assets/styles.css">
+  <script src="/assets/app.js"></script>
+  <script src="/assets/highlight.js" defer></script>
+  <script src="/assets/learn.js" defer></script>
+  <script src="/assets/voice.js" defer></script>
+  <script src="/assets/discuss.js" defer></script>
+</head>
+<body data-page="discuss">
+  <header id="site-header"></header>
+  <main class="container" id="main-area">
+    <div id="discuss-ui" class="hidden">
+      <div class="discuss-layout">
+        <section aria-label="Conversation">
+          <div id="context" style="margin-bottom:18px;display:flex;align-items:center;flex-wrap:wrap;gap:6px"></div>
+          <div id="chat" class="chat" aria-live="polite"></div>
+          <div id="chat-error" class="alert hidden" role="alert"></div>
+          <form id="composer" class="composer">
+            <div class="composer-inline">
+              <label for="msg" class="hidden">Message</label>
+              <textarea id="msg" maxlength="4000" placeholder="Type a question… (Enter to send, Shift+Enter for a new line)"></textarea>
+              <button class="btn btn-primary" id="send-btn" type="submit">Send</button>
+            </div>
+          </form>
+          <p class="small muted" style="margin-top:10px">💡 Select any part of an answer to highlight it into your notes.</p>
+        </section>
+
+        <aside class="stack sticky">
+          <div class="card voice-panel">
+            <button id="mic-btn" class="mic-btn" aria-label="Start speaking">🎙</button>
+            <div id="voice-status" class="voice-status" aria-live="polite">Tap to speak</div>
+            <div id="interim" class="interim"></div>
+            <div class="small muted center">Shortcut: <kbd>Space</kbd> to talk or interrupt</div>
+          </div>
+
+          <div class="card">
+            <label class="field">Mode</label>
+            <div class="seg" id="persona" role="group" aria-label="Tutor style"></div>
+            <div style="margin-top:12px">
+              <label class="switch"><span>Hands-free <span class="hint">· keeps listening</span></span><input type="checkbox" id="hands-free"></label>
+              <label class="switch"><span>Mute AI voice</span><input type="checkbox" id="mute"></label>
+            </div>
+            <details class="faq" style="border:0;padding:6px 0 0">
+              <summary class="small">Voice settings</summary>
+              <div class="stack" style="margin-top:10px;gap:10px">
+                <div><label class="field small" for="voice-lang">Language</label>
+                  <select id="voice-lang"><option value="en-US">English (US)</option><option value="en-IN">English (India)</option><option value="en-GB">English (UK)</option><option value="hi-IN">Hindi</option></select></div>
+                <div><label class="field small" for="voice-name">Voice</label><select id="voice-name"></select></div>
+                <div><label class="field small" for="voice-rate">Speed</label>
+                  <select id="voice-rate"><option value="0.9">Slow</option><option value="1.05">Normal</option><option value="1.25">Fast</option><option value="1.5">Very fast</option></select></div>
+              </div>
+            </details>
+          </div>
+
+          <button class="btn btn-ghost btn-block" id="end-btn" disabled>End &amp; make notes</button>
+        </aside>
+      </div>
+    </div>
+  </main>
+  <footer id="site-footer"></footer>
+</body>
+</html>

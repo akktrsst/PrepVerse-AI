@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PrepVerse Dashboard</title>
+  <meta name="description" content="Your interview readiness, score trend and weak topics.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='9' fill='%235b4cf0'/><text x='16' y='22' font-size='17' font-family='Arial' font-weight='800' fill='white' text-anchor='middle'>P</text></svg>">
+  <link rel="stylesheet" href="/assets/styles.css">
+  <script src="/assets/app.js"></script>
+</head>
+<body>
+  <header id="site-header"></header>
+
+  <main class="container">
+    <div class="page-head" style="display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap">
+      <div>
+        <span class="eyebrow">Dashboard</span>
+        <h1 style="font-size:clamp(1.8rem,4vw,2.4rem);margin:0">Your interview readiness</h1>
+      </div>
+      <a class="btn btn-primary" href="/interview/">New interview</a>
+    </div>
+    <div id="active-banner"></div>
+    <div class="grid grid-3" style="margin-bottom:20px">
+      <a class="card topic-card" href="/learn/"><div class="icon-tile">📚</div><strong>Learn Hub</strong><p class="muted small" style="margin:6px 0 0">Curated videos, papers and repos for every topic.</p></a>
+      <a class="card topic-card" href="/discuss/"><div class="icon-tile">🎙</div><strong>Voice Discuss</strong><p class="muted small" style="margin:6px 0 0">Talk a topic through with the AI tutor.</p></a>
+      <a class="card topic-card" href="/notes/"><div class="icon-tile">🖍</div><strong>My notes</strong><p class="muted small" style="margin:6px 0 0" id="notes-count">Highlights and AI study notes.</p></a>
+    </div>
+    <div id="dash"></div>
+  </main>
+
+  <footer id="site-footer"></footer>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const { el, label, scoreTone } = PV;
+      PV.auth.ready.then(async () => {
+        if (PV.auth.enabled && !PV.auth.user) return;
+        try {
+          const notes = await PV.api("/notes");
+          if (notes.length) document.getElementById("notes-count").textContent = `${notes.length} note${notes.length === 1 ? "" : "s"} saved`;
+        } catch { /* optional */ }
+      });
+      const items = PV.history().slice().sort((a, b) => a.date.localeCompare(b.date));
+      const host = document.getElementById("dash");
+
+      const activeId = PV.store.get("pv.active", null);
+      if (activeId) {
+        document.getElementById("active-banner").append(
+          el("div", { class: "card", style: { display: "flex", justifyContent: "space-between", alignItems: "center", gap: "12px", flexWrap: "wrap", marginBottom: "20px", borderColor: "var(--accent)" } },
+            el("div", {}, el("strong", {}, "You have an interview in progress"),
+              el("p", { class: "small muted", style: { margin: 0 } }, "Pick up where you left off.")),
+            el("a", { class: "btn btn-primary", href: `/interview/?session=${encodeURIComponent(activeId)}` }, "Resume")));
+      }
+
+      if (!items.length) {
+        host.append(el("div", { class: "card empty" },
+          el("div", { class: "icon-tile", style: { margin: "0 auto 14px" } }, "📈"),
+          el("h3", {}, "No interviews yet"),
+          el("p", { class: "muted" }, "Finish your first mock interview to see your readiness score, trends and weak topics here."),
+          el("a", { class: "btn btn-primary", href: "/interview/" }, "Start your first interview")));
+        return;
+      }
+
+      const scores = items.map((h) => h.score);
+      const latest = scores[scores.length - 1];
+      const best = Math.max(...scores);
+      const recent = scores.slice(-3);
+      const readiness = Math.round(recent.reduce((s, x) => s + x, 0) / recent.length);
+      const first = scores[0];
+      const delta = latest - first;
+
+      // Weak topics across all sessions, most frequent first.
+      const counts = {};
+      items.forEach((h) => (h.weak_topics || []).forEach((t) => { counts[t] = (counts[t] || 0) + 1; }));
+      const weak = Object.entries(counts).sort((a, b) => b[1] - a[1]).slice(0, 10);
+
+      // Rubric averages across all sessions.
+      const dims = ["accuracy", "depth", "structure", "communication"];
+      const dimAvg = Object.fromEntries(dims.map((d) => [d,
+        items.reduce((s, h) => s + (h.report?.rubric_averages?.[d] || 0), 0) / items.length]));
+      const weakestDim = dims.reduce((a, b) => (dimAvg[a] <= dimAvg[b] ? a : b));
+
+      const tone = scoreTone(readiness);
+      const metric = (title, value, sub) => el("div", { class: "card" },
+        el("div", { class: "small muted" }, title), el("div", { class: "metric" }, value), sub);
+
+      host.append(
+        el("div", { class: "grid grid-4", style: { marginBottom: "20px" } },
+          metric("Readiness score", `${readiness}`, el("span", { class: `badge ${tone.badge}` }, tone.text)),
+          metric("Interviews completed", String(items.length), el("span", { class: "small muted" }, "All time")),
+          metric("Best score", String(best), el("span", { class: "small muted" }, `Latest: ${latest}`)),
+          metric("Progress", `${delta >= 0 ? "+" : ""}${delta}`, el("span", { class: "small muted" }, "Since your first interview"))),
+
+        el("div", { class: "grid grid-2", style: { marginBottom: "20px" } },
+          el("div", { class: "card" },
+            el("h3", {}, "Score trend"),
+            el("p", { class: "small muted" }, "Your last 12 interviews"),
+            el("div", { class: "trend", role: "img", "aria-label": `Scores: ${scores.slice(-12).join(", ")}` },
+              items.slice(-12).map((h) => el("div", { class: "col", title: `${h.score} · ${new Date(h.date).toLocaleDateString()}` },
+                el("span", {}, String(h.score)),
+                el("div", { class: "b", style: { height: `${Math.max(h.score, 3)}%`, background: scoreTone(h.score).col } }),
+                el("span", {}, new Date(h.date).toLocaleDateString(undefined, { month: "short", day: "numeric" })))))),
+          el("div", { class: "card" },
+            el("h3", {}, "Focus areas"),
+            weak.length
+              ? el("div", {},
+                  el("p", { class: "small muted" }, "Topics that came up as weak, most frequent first."),
+                  weak.map(([t, n]) => el("span", { class: "chip" }, n > 1 ? `${t} ×${n}` : t)))
+              : el("p", { class: "muted small" }, "No recurring weak topics. Nice work."),
+            el("p", { class: "small", style: { marginTop: "14px", marginBottom: 0 } },
+              "Weakest rubric dimension: ", el("strong", {}, weakestDim[0].toUpperCase() + weakestDim.slice(1)),
+              el("span", { class: "muted" }, ` (${dimAvg[weakestDim].toFixed(1)} / 5)`)))),
+
+        el("div", { class: "card table-wrap" },
+          el("h3", {}, "Interview history"),
+          el("table", { class: "history" },
+            el("thead", {}, el("tr", {}, ["Date", "Role", "Topics", "Score", ""].map((h) => el("th", {}, h)))),
+            el("tbody", {}, items.slice().reverse().map((h) => el("tr", {},
+              el("td", {}, new Date(h.date).toLocaleDateString()),
+              el("td", {}, `${label(h.role)} · ${label(h.level)}`),
+              el("td", { class: "muted" }, (h.modules || []).map(label).join(", ")),
+              el("td", {}, el("span", { class: `badge ${scoreTone(h.score).badge}` }, String(h.score))),
+              el("td", {}, el("a", { href: `/interview/?session=${encodeURIComponent(h.id)}` }, "View report")))))),
+          el("p", { class: "small muted", style: { margin: "14px 0 0" } },
+            "History is saved in this browser. Sign-in to sync across devices is coming soon.")),
+      );
+    });
+  </script>
+</body>
+</html>
