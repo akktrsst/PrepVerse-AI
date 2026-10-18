@@ -19,7 +19,7 @@ SA_NAME="prepverse-api"
 SA="${SA_NAME}@${PROJECT}.iam.gserviceaccount.com"
 JOB="${JOB:-prepverse-ingest}"
 
-gcloud config set project "$PROJECT"
+export CLOUDSDK_CORE_PROJECT="$PROJECT"  # scoped to this script; leaves your gcloud default alone
 
 echo "==> Enabling APIs"
 gcloud services enable \
@@ -35,8 +35,13 @@ gcloud iam service-accounts describe "$SA" >/dev/null 2>&1 || \
   gcloud iam service-accounts create "$SA_NAME" --display-name="PrepVerse API"
 # run.developer: lets the API start the ingest job for one topic ("Find resources now").
 for role in roles/aiplatform.user roles/datastore.user roles/secretmanager.secretAccessor roles/run.invoker roles/run.developer; do
-  gcloud projects add-iam-policy-binding "$PROJECT" \
-    --member="serviceAccount:${SA}" --role="$role" --condition=None >/dev/null
+  # Retry: policy edits right after creating the service account can hit "concurrent policy change".
+  for attempt in 1 2 3 4 5; do
+    gcloud projects add-iam-policy-binding "$PROJECT" \
+      --member="serviceAccount:${SA}" --role="$role" --condition=None >/dev/null 2>&1 && break
+    [ "$attempt" = 5 ] && { echo "failed to grant $role" >&2; exit 1; }
+    sleep $((attempt * 3))
+  done
 done
 
 echo "==> Firestore vector indexes for Learn Hub search (768-dim, cosine) — no-op if they exist"
