@@ -71,10 +71,13 @@ const PV = (() => {
     return new ApiError(res.status, msg || `Request failed (${res.status})`);
   }
 
+  /** API calls take paths like "/learn/topics"; the server serves them under /api. */
+  const apiUrl = (path) => (path.startsWith("/api/") ? path : `/api${path}`);
+
   async function rawFetch(path, { method = "GET", body } = {}) {
     let res;
     try {
-      res = await fetch(path, {
+      res = await fetch(apiUrl(path), {
         method,
         headers: { ...(body ? { "Content-Type": "application/json" } : {}), ...(await authHeaders()) },
         body: body ? JSON.stringify(body) : undefined,
@@ -283,8 +286,8 @@ const PV = (() => {
           el("a", { href: "/interview/?module=genai_llms" }, "GenAI & LLMs"),
           el("a", { href: "/interview/?module=ai_agents" }, "AI Agents")),
         el("div", {}, el("h4", {}, "Developers"),
-          el("a", { href: "/docs" }, "API docs"),
-          el("a", { href: "/healthz" }, "Status"))),
+          el("a", { href: "/api/docs" }, "API docs"),
+          el("a", { href: "/api/healthz" }, "Status"))),
       el("p", { class: "small", style: { marginTop: "28px" } }, `© ${new Date().getFullYear()} PrepVerse AI`)));
   }
 

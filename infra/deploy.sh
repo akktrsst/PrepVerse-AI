@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
-# One-time setup + deploy of the backend to Cloud Run (scale-to-zero),
-# plus the daily ingestion job for the Learn Hub.
+# One-time setup + deploy: API on Cloud Run (scale-to-zero), the daily ingestion
+# job for the Learn Hub, and the website on Firebase Hosting (forwards /api/** to Cloud Run).
+# Prerequisite: Firebase added to this GCP project (Firebase console -> Add project ->
+# pick the existing project), and the Firebase CLI (`npm i -g firebase-tools`, or use Cloud Shell).
 #
 # Usage:
 #   PROJECT=my-project \
@@ -89,17 +91,27 @@ gcloud scheduler jobs describe "${JOB}-daily" --location "$REGION" >/dev/null 2>
     --uri "https://run.googleapis.com/v2/projects/${PROJECT}/locations/${REGION}/jobs/${JOB}:run" \
     --http-method POST --oauth-service-account-email "$SA"
 
+echo "==> Website on Firebase Hosting"
+if command -v firebase >/dev/null 2>&1; then
+  (cd "$(dirname "$0")/.." && firebase deploy --only hosting --project "$PROJECT")
+else
+  echo "   Firebase CLI not found: skipped. Install it (npm i -g firebase-tools) and run:"
+  echo "   firebase deploy --only hosting --project $PROJECT"
+fi
+
 cat <<EOF
 
-Done. Remaining manual steps:
+Done. Site: https://${PROJECT}.web.app  (API docs: /api/docs)
+Remaining manual steps:
   1. Billing -> Budgets & alerts: add alerts at \$50 / \$150 / \$250.
   2. Billing -> Credits: note when your trial credit expires.
-  3. Firebase console: add this project, enable Google sign-in, register a Web app
-     (gives FIREBASE_WEB_API_KEY / FIREBASE_APP_ID), and add your Cloud Run URL
-     to Authentication -> Settings -> Authorized domains.
+  3. Firebase console (this project): Authentication -> enable Google sign-in;
+     Project settings -> add a Web app (gives FIREBASE_WEB_API_KEY / FIREBASE_APP_ID),
+     then re-run this script with those set. *.web.app / *.firebaseapp.com are
+     authorized for sign-in automatically; add a custom domain there if you use one.
   4. Fill the Learn Hub now instead of waiting for 02:00 IST:
      gcloud run jobs execute ${JOB} --region ${REGION}
-  5. Set CORS_ORIGINS on the service once the frontend URL exists:
-     gcloud run services update ${SERVICE} --region ${REGION} \\
-       --update-env-vars '^@^CORS_ORIGINS=["https://your-frontend"]'
+  5. Discuss answers should stream word by word. If they arrive all at once through
+     Hosting, the CDN is buffering the stream; tell us and we'll route that call to
+     Cloud Run directly.
 EOF

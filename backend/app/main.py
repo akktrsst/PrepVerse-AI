@@ -1,7 +1,7 @@
 import logging
 from pathlib import Path
 
-from fastapi import FastAPI, Request, status
+from fastapi import APIRouter, FastAPI, Request, status
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 from fastapi.staticfiles import StaticFiles
@@ -28,7 +28,10 @@ def create_app(settings: Settings | None = None, llm: LLM | None = None, store: 
     llm = llm or LLM(settings)
     store = store if store is not None else build_store(settings)
 
-    app = FastAPI(title="PrepVerse AI", version="0.1.0")
+    # All API routes live under /api so a CDN (Firebase Hosting) can serve the pages
+    # and forward only /api/** to Cloud Run.
+    app = FastAPI(title="PrepVerse AI", version="0.1.0", docs_url="/api/docs", redoc_url=None,
+                  openapi_url="/api/openapi.json")
     app.state.settings = settings
     app.state.store = store
     app.state.llm = llm
@@ -43,8 +46,9 @@ def create_app(settings: Settings | None = None, llm: LLM | None = None, store: 
         allow_methods=["*"],
         allow_headers=["*"],
     )
+    api = APIRouter(prefix="/api")
     for module in (interview, learn, discuss, notes):
-        app.include_router(module.router)
+        api.include_router(module.router)
 
     @app.exception_handler(LLMError)
     async def llm_error(_: Request, exc: LLMError):
@@ -59,11 +63,11 @@ def create_app(settings: Settings | None = None, llm: LLM | None = None, store: 
     async def not_found(_: Request, exc: NotFoundError):
         return JSONResponse({"detail": str(exc)}, status_code=status.HTTP_404_NOT_FOUND)
 
-    @app.get("/healthz")
+    @api.get("/healthz")
     def healthz():
         return {"ok": True}
 
-    @app.get("/config/public")
+    @api.get("/config/public")
     def public_config():
         """Public Firebase web config so the UI can sign users in (these values aren't secrets)."""
         return {
@@ -75,6 +79,8 @@ def create_app(settings: Settings | None = None, llm: LLM | None = None, store: 
                 "appId": settings.firebase_app_id,
             } if settings.firebase_web_api_key else None,
         }
+
+    app.include_router(api)
 
     # The UI. Mounted last so API routes (and /docs) take precedence.
     if WEB_DIR.is_dir():

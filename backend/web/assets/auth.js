@@ -1,11 +1,11 @@
 // Firebase Google sign-in. Loaded as a module by app.js on every page.
-// Reads the public Firebase web config from /config/public, so no keys live in the frontend code.
+// Reads the public Firebase web config from /api/config/public, so no keys live in the frontend code.
 const FIREBASE_VERSION = "10.12.2";
 
 async function init() {
   let cfg;
   try {
-    cfg = await (await fetch("/config/public")).json();
+    cfg = await (await fetch("/api/config/public")).json();
   } catch {
     PV._setAuth({ enabled: false });
     return;

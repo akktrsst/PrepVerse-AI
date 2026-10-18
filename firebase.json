@@ -1,0 +1,22 @@
+{
+  "hosting": {
+    "public": "backend/web",
+    "ignore": ["**/.*", "**/_*"],
+    "rewrites": [
+      {
+        "source": "/api/**",
+        "run": { "serviceId": "prepverse-api", "region": "asia-south1" }
+      }
+    ],
+    "headers": [
+      {
+        "source": "/assets/**",
+        "headers": [{ "key": "Cache-Control", "value": "public, max-age=300" }]
+      },
+      {
+        "source": "**/*.html",
+        "headers": [{ "key": "Cache-Control", "value": "no-cache" }]
+      }
+    ]
+  }
+}
