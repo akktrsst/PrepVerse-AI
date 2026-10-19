@@ -44,6 +44,16 @@ for role in roles/aiplatform.user roles/datastore.user roles/secretmanager.secre
   done
 done
 
+echo "==> Build permissions (newer projects don't grant these to the default build account)"
+PROJECT_NUMBER="$(gcloud projects describe "$PROJECT" --format='value(projectNumber)')"
+for attempt in 1 2 3 4 5; do
+  gcloud projects add-iam-policy-binding "$PROJECT" \
+    --member="serviceAccount:${PROJECT_NUMBER}-compute@developer.gserviceaccount.com" \
+    --role=roles/cloudbuild.builds.builder --condition=None >/dev/null 2>&1 && break
+  [ "$attempt" = 5 ] && { echo "failed to grant the Cloud Build builder role" >&2; exit 1; }
+  sleep $((attempt * 3))
+done
+
 echo "==> Firestore vector indexes for Learn Hub search (768-dim, cosine) — no-op if they exist"
 gcloud firestore indexes composite create --collection-group=resources --query-scope=COLLECTION \
   --field-config='field-path=embedding,vector-config={"dimension":"768","flat":"{}"}' 2>/dev/null || true
